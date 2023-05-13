@@ -1,13 +1,13 @@
 import AuthAPI from '../api/AuthAPI'
+import { toast } from 'react-toastify'
 
 /**
  * @returns {Promise<boolean>} Authenticated or not
  */
 export const appLoader = async () => {
-  const token = localStorage.getItem('token')
+  const { user, error } = await AuthAPI.me()
 
-  // const user = await AuthAPI.me()
+  if (error) toast.error(error)
 
-  if (!token || token === 'undefined') return false
-  return true
+  return user || null
 }

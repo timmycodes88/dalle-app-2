@@ -31,7 +31,8 @@ module.exports.signUpUser = async (req, res) => {
   }
 }
 
-module.exports.getMe = async req => {
+module.exports.getMe = async (req, res) => {
   const { user } = req
-  return user
+  if (!user) return res.status(401).json({ error: 'User not here.' })
+  res.status(200).json({ user })
 }

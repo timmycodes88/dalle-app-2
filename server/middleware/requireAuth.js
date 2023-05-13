@@ -11,9 +11,9 @@ module.exports = async (req, res, next) => {
   const token = auth.split(' ')[1]
 
   try {
-    const { _id } = jwt.verify(token, process.env.JWT_SECRET)
-    req.user = await User.findOneById({ _id })
-    delete req.user.password
+    const { id } = jwt.verify(token, process.env.JWT_SECRET)
+    const apple = await User.findOne({ _id: id }).select(['username'])
+    req.user = apple
     next()
   } catch (err) {
     return res

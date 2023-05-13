@@ -4,6 +4,7 @@ export default async function request(endpoint, body) {
   const modifiedOptions = {
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify(body),
     method: body ? 'POST' : 'GET',
