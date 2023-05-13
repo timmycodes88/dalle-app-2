@@ -3,6 +3,10 @@ import { NavLink, Outlet, useLoaderData, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { ReactComponent as Hamburger } from './assets/svg/hamburger.svg'
 import { ReactComponent as X } from './assets/svg/x.svg'
+import { ToastContainer } from 'react-toastify'
+import { injectStyle } from 'react-toastify/dist/inject-style'
+
+injectStyle()
 
 /**@type {boolean} Authenticated or not */
 const useAppData = () => useLoaderData()
@@ -43,6 +47,18 @@ export default function App() {
       <Main>
         <Outlet />
       </Main>
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
     </Body>
   )
 }

@@ -6,6 +6,8 @@ const cors = require('cors')
 
 //* Imports
 const authRoute = require('./routes/authRoute')
+const postRoute = require('./routes/postRoute')
+const dalleRoute = require('./routes/dalleRoute')
 
 //* Express
 const app = express()
@@ -20,6 +22,8 @@ app.use(express.json())
 
 //* Routes
 app.use('/api/auth', authRoute)
+app.use('/api/posts', postRoute)
+app.use('/api/dalle', dalleRoute)
 
 //* Start Up Server
 const startUp = async () => {

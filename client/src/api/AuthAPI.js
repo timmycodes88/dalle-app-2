@@ -1,6 +1,6 @@
 import request from '../utils/request'
 
-const ENDPOINT = 'http://localhost:5000/api/auth'
+const ENDPOINT = '/api/auth'
 
 /**
  * @typedef {Object} AuthData
@@ -35,6 +35,7 @@ const AuthAPI = {
    */
   signup: async ({ username, email, password }) =>
     request(ENDPOINT + '/signup', { username, email, password }),
+  me: async () => request(ENDPOINT),
 }
 
 export default AuthAPI

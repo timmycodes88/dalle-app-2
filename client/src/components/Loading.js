@@ -3,7 +3,7 @@ import tw, { styled } from 'twin.macro'
 export default function Loading() {
   return (
     <Styles>
-      <span class='loader'></span>
+      <span className='loader'></span>
     </Styles>
   )
 }
