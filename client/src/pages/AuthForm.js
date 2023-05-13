@@ -33,7 +33,7 @@ const FormElements = {
 
 const TWForm = tw(Form)`
   text-white
-  w-96 flex flex-col 
+  w-fit flex flex-col 
   [label]:(mt-1)
   [input]:(px-2 py-1 rounded-2xl mb-5 text-slate-900)
   [button]:(bg-white w-32 rounded-2xl mx-auto text-slate-900)
@@ -85,9 +85,9 @@ const ToggleButton = ({ text, toggle }) => (
 )
 
 const Body = styled.div(({ shrink }) => [
-  tw`bg-zinc-800 rounded-2xl px-12 py-8 
+  tw`bg-zinc-800 rounded-2xl px-8 py-6 md:(px-12 py-8) 
   flex flex-col gap-4 justify-center items-center 
-  w-[40rem]
+  w-[20rem] md:w-[40rem]
   transition-all duration-300 ease-in-out`,
   shrink ? tw`scale-y-0` : tw`scale-y-100`,
 ])
