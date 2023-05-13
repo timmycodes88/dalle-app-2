@@ -6,8 +6,8 @@ import AuthAPI from '../api/AuthAPI'
 export const appLoader = async () => {
   const token = localStorage.getItem('token')
 
-  const user = await AuthAPI.me()
+  // const user = await AuthAPI.me()
 
   if (!token || token === 'undefined') return false
-  return user
+  return true
 }
