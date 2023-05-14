@@ -1,14 +1,17 @@
-import tw from 'twin.macro'
+import tw, { styled } from 'twin.macro'
 import PlacholderImg from '../assets/images/placeholder-square.jpg'
 import Loading from '../components/Loading'
 import { useNavigation, useSubmit } from 'react-router-dom'
 import { useCreateData } from '../routes/createRoute'
 import { useRef } from 'react'
+import { useUser } from '../routes/appRoute'
 
 export const GENERATE = 'GENERATE'
 export const POST = 'POST'
 
 export default function Create() {
+  const { username } = useUser()
+
   const image = useCreateData()
 
   const promptRef = useRef(null)
@@ -29,6 +32,7 @@ export default function Create() {
         prompt: promptRef.current.value,
         comment: commentRef.current.value,
         image,
+        username,
       },
       { method: 'POST' }
     )
@@ -61,7 +65,9 @@ export default function Create() {
         maxLength={150}
         placeholder='Optional'
       />
-      <Button onClick={postImage}>Post</Button>
+      <Button disabled={!image} onClick={postImage}>
+        Post
+      </Button>
     </Wrapper>
   )
 }
@@ -74,4 +80,7 @@ const ImageWrap = tw.div`relative flex justify-center items-center h-80 w-80 rou
 
 const Input = tw.input`border border-gray-300 rounded-md p-2 text-zinc-900`
 const TextArea = tw.textarea`border border-gray-300 rounded-md p-2 text-zinc-900`
-const Button = tw.button`bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded`
+const Button = styled.button(({ disabled }) => [
+  tw`bg-blue-500 font-bold py-2 px-4 rounded`,
+  disabled ? tw`bg-gray-500 cursor-not-allowed` : tw`hover:bg-blue-700`,
+])

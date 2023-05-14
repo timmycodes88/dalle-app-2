@@ -1,10 +1,10 @@
-const { getPosts, createPost } = require('../controllers/postController')
+const { getPosts, post } = require('../controllers/postController')
 const requireAuth = require('../middleware/requireAuth')
 
 const router = require('express').Router()
 
-router.use(requireAuth)
 router.get('/', getPosts)
-router.post('/', createPost)
+router.use(requireAuth)
+router.post('/', post)
 
 module.exports = router

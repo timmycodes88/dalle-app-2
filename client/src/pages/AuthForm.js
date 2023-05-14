@@ -59,7 +59,7 @@ export default function AuthForm() {
     setFormType(prev => (prev === LOGIN ? SIGNUP : LOGIN))
     document
       .querySelectorAll('.form-input')
-      .forEach(input => (input.value = ''))
+      .forEach(input => (input.value = '')) //Reset Form
   }
 
   const toggle = () => {

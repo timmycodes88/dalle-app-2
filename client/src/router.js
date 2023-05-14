@@ -6,16 +6,18 @@ import Home from './pages/Home'
 import { appLoader } from './routes/appRoute'
 import Create from './pages/Create'
 import { createAction } from './routes/createRoute'
+import { homeLoader } from './routes/homeRoute'
 
 const router = createBrowserRouter([
   {
+    id: 'app',
     path: '/',
     loader: appLoader,
     shouldRevalidate: ({ currentUrl, nextUrl }) =>
       currentUrl.pathname !== nextUrl.pathname,
     element: <App />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, loader: homeLoader, element: <Home /> },
       { path: 'get-in', action: authAction, element: <AuthForm /> },
       { path: 'create', action: createAction, element: <Create /> },
       {

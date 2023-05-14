@@ -22,21 +22,6 @@ export default async function request(endpoint, body) {
   return data
 }
 
-export const toastOptions = {
-  position: 'top-right',
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  theme: 'light',
-}
-
-//TODO: JWT Headers
-//TODO: Auth JWT and get me in AuthAPI
-//TODO: AuthAPI.me() in appLoader
-//TODO: User Context
 //TODO: add Post Routes
 //TODO: SEND POSTS TO DB and Cloundinary
 //TODO: DISPLAY POSTS on Home

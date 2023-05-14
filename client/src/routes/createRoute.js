@@ -10,30 +10,35 @@
  * @property {string} [image] - The generated image in base 64
  */
 
-import { useActionData } from 'react-router-dom'
-import DalleAPI from '../api/DalleAPI'
+import { redirect, useActionData } from 'react-router-dom'
 import { GENERATE, POST } from '../pages/Create'
 import { toast } from 'react-toastify'
-import { toastOptions } from '../utils/request'
+import PostAPI from '../api/PostAPI'
+import DalleAPI from '../api/DalleAPI'
 
 export const createAction = async ({ request }) => {
   const formData = await request.formData()
   /**@type {CreateRequest} */
-  const { type, prompt, comment, image } = Object.fromEntries(
-    formData.entries()
-  )
+  const { type, prompt, comment } = Object.fromEntries(formData.entries())
 
-  const { image: b64Image, error } = await {
-    [GENERATE]: async () => DalleAPI.post(prompt),
-    [POST]: () => {},
-  }[type]()
-
-  if (error) {
-    toast.error(error, toastOptions)
+  //* Checks
+  if (!prompt) {
+    toast.error('Prompt is required lol')
     return null
   }
 
-  return `data:image/jpeg;base64,${b64Image}`
+  const { post, image, error } = await {
+    [GENERATE]: async () => DalleAPI.post(prompt),
+    [POST]: async () => PostAPI.post(comment),
+  }[type]()
+  if (post) return redirect('/')
+
+  if (error) {
+    toast.error(error)
+    return null
+  }
+
+  return image
 }
 
 export const useCreateData = () => useActionData()

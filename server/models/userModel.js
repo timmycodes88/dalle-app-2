@@ -2,6 +2,24 @@ const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
 
+const postSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    prompt: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+)
+
 const userSchema = new Schema(
   {
     username: {
@@ -18,6 +36,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    images: [postSchema],
   },
   { timestamps: true }
 )
